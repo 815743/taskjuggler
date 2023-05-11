@@ -232,7 +232,6 @@ task WMGame "Web & Mobile Game" {
       depends WMGame.tSNBE.tSELEC
     }
   }
-
 }
 
 # Now the project has been specified completely. Stopping here would
