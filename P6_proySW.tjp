@@ -65,6 +65,11 @@ resource dev2 "Samantha Müller" {
   rate 100
   actual:leaves project 2023-05-07 - 2023-05-12
 }
+resource dev4 "Samantha Hull" {
+  email "jjj@unizar.es"
+  rate 100
+  actual:leaves project 2023-01-07 - 2023-12-12
+}
 resource dev3 "Peter Green" {
   email "kkk@unizar.es"
 }
@@ -200,12 +205,12 @@ task WMGame "Web & Mobile Game" {
     }
     task tMFEc "Movil Front End Construction" {
       effort 17d
-      allocate dev2, dev3
+      allocate dev4
       depends WMGame.tMFW.tMGUId
     }
     task tMFEt "Movil Front End Test" {
       effort 7d
-      allocate dev1
+      allocate dev4
       depends WMGame.tMFW.tMFEc
     }    
   }
@@ -218,7 +223,7 @@ task WMGame "Web & Mobile Game" {
     task tSELEC "SELECCION" {
       effort 3d
       actual:effort 15d
-      allocate dev3
+      allocate dev4
       journalentry 2023-04-11 "Problems with the GUI design tool" {
         author dev3
         alert yellow
@@ -227,7 +232,7 @@ task WMGame "Web & Mobile Game" {
     }
     task tDESPL "DESPLIEGUE" {
       effort 3d
-      allocate dev2, dev3
+      allocate dev4
       depends WMGame.tSNBE.tSELEC
     }
   }
