@@ -45,6 +45,7 @@ rate 145.2
 account cost "Project Cost" {
   account manag "Management"
   account wFront "Web Front-End"
+  account mFront "Movil Front-End"
   account back "Back-End"
 }
 account rev "Payments"
@@ -186,6 +187,51 @@ task WMGame "Web & Mobile Game" {
       charge 12000.0 onstart
     }
   }
+
+  task tMFW "Movil Front End" {
+    purge chargeset
+    chargeset mFront
+    responsible dev3
+    depends WMGame.tback.tBEd
+    task tMGUId "Movil GUI Design" {
+      effort 11d
+      actual:effort 15d
+      allocate dev3
+    }
+    task tMFEc "Movil Front End Construction" {
+      effort 17
+      allocate dev2, dev3
+      depends WMGame.tMFW.tMGUId
+    }
+    task tMFEt "Movil Front End Test" {
+      effort 7d
+      allocate dev1
+      depends WMGame.tMFW.tMFEc
+    }    
+  }
+
+  task tSNBE "Soporte Nube Back End" {
+    purge chargeset
+    chargeset back
+    responsible dev3
+    depends WMGame.tback.tBEd
+    task tSELEC "SELECCION" {
+      effort 3d
+      actual:effort 15d
+      allocate dev3
+      journalentry 2023-04-11 "Problems with the GUI design tool" {
+        author dev3
+        alert yellow
+        summary "The tool used for the GUI design has given me a lot of problems. I recommend to look for other one."
+      }
+    }
+    task tDESPL "DESPLIEGUE" {
+      effort 3d
+      allocate dev2, dev3
+      depends WMGame.tSNBE.tSELEC
+    }
+  }
+
 }
 
 # Now the project has been specified completely. Stopping here would
