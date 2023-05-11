@@ -196,17 +196,19 @@ task WMGame "Web & Mobile Game" {
     task tMGUId "Movil GUI Design" {
       effort 11d
       actual:effort 15d
+      allocate dev3
     }
     task tMFEc "Movil Front End Construction" {
       effort 17d
+      allocate dev2, dev3
       depends WMGame.tMFW.tMGUId
     }
     task tMFEt "Movil Front End Test" {
       effort 7d
+      allocate dev1
       depends WMGame.tMFW.tMFEc
     }    
   }
-
 
   task tSNBE "Soporte Nube Back End" {
     purge chargeset
@@ -216,6 +218,7 @@ task WMGame "Web & Mobile Game" {
     task tSELEC "SELECCION" {
       effort 3d
       actual:effort 15d
+      allocate dev3
       journalentry 2023-04-11 "Problems with the GUI design tool" {
         author dev3
         alert yellow
@@ -224,9 +227,11 @@ task WMGame "Web & Mobile Game" {
     }
     task tDESPL "DESPLIEGUE" {
       effort 3d
+      allocate dev2, dev3
       depends WMGame.tSNBE.tSELEC
     }
   }
+
 }
 
 # Now the project has been specified completely. Stopping here would
